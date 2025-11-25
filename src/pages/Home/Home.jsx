@@ -4,7 +4,7 @@ import playStoreIcon from "../../assets/playstore.png";
 import appStoreIcon from "../../assets/app-store.png";
 import downloadIcon from "../../assets/icon-downloads.png"
 import ratingIcon from "../../assets/icon-ratings.png"
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 
 const Home = () => {
     
@@ -12,6 +12,11 @@ const Home = () => {
     const [showAll, setShowAll] = useState(false)
 
     const slicedCards = showAll ? InfoData : InfoData.slice(0, 8)
+
+    const navigateApps = useNavigate()
+    const handleNavigate = ()=>{
+      navigateApps("/Apps")
+    }
 
     
   return (
@@ -108,7 +113,7 @@ const Home = () => {
         }
         </div>
 
-        <button onClick={()=> setShowAll(true)} className="bg-linear-to-r from-[#632EE3] to-[#9F62F2] text-white btn px-8 md:px-8 my-4">Show All</button>
+        <button onClick={()=> handleNavigate()} className="bg-linear-to-r from-[#632EE3] to-[#9F62F2] text-white btn px-8 md:px-8 my-4">Show All</button>
 
       </div>
     </div>

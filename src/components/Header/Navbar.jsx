@@ -28,8 +28,8 @@ const Navbar = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal gap-4 font-medium">
       <NavLink className={`hover:bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:text-transparent hover:bg-clip-text hover:border-b-2 hover:border-purple-600 hover:font-semibold`} to={"/"}>Home</NavLink>
-      <NavLink to={"/a"}>Apps</NavLink>
-      <NavLink to={"/a"}>Installation</NavLink>
+      <NavLink to={"/apps"}>Apps</NavLink>
+      <NavLink to={"/"}>Installation</NavLink>
     </ul>
   </div>
   <div className="navbar-end">
