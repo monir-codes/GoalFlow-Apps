@@ -5,6 +5,7 @@ import Root from "../pages/Root/Root.jsx"
 import ErrorPage from '../pages/ErrorPage/ErrorPage.jsx'
 import Home from '../pages/Home/Home.jsx';
 
+
  export const router = createBrowserRouter([
   {
     path: "/",
@@ -13,8 +14,8 @@ import Home from '../pages/Home/Home.jsx';
     children: [
         {
             index: true,
-            path:"/",
-            Component:Home
+            Component:Home,
+            loader: ()=> fetch("/info.json").then(res=> res.json())
         }
     ]
   },

@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from '../../assets/logo.png';
+import { NavLink } from 'react-router';
 
 const Navbar = () => {
     return (
@@ -12,7 +13,7 @@ const Navbar = () => {
       <ul
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Home</a></li>
+      <NavLink to={"/vvv"}>Home</NavLink>
       <li><a>Apps</a></li>
       <li><a>Installation</a></li>
       </ul>
@@ -25,10 +26,10 @@ const Navbar = () => {
 
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-      <li><a>Home</a></li>
-      <li><a>Apps</a></li>
-      <li><a>Installation</a></li>
+    <ul className="menu menu-horizontal gap-4 font-medium">
+      <NavLink className={`hover:bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:text-transparent hover:bg-clip-text hover:border-b-2 hover:border-purple-600 hover:font-semibold`} to={"/"}>Home</NavLink>
+      <NavLink to={"/a"}>Apps</NavLink>
+      <NavLink to={"/a"}>Installation</NavLink>
     </ul>
   </div>
   <div className="navbar-end">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Navbar from '../../components/Header/Navbar';
 import { Outlet } from 'react-router';
 import Footer from '../../components/Footer/Footer';
@@ -8,7 +8,9 @@ const Root = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <Suspense fallback={"Loading..."}>
+             <Outlet></Outlet>
+            </Suspense>
             <Footer></Footer>
         </div>
     );
