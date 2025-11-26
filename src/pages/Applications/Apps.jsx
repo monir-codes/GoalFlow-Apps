@@ -1,11 +1,14 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { useState } from 'react';
+import { Link, useLoaderData } from 'react-router';
 import downloadIcon from "../../assets/icon-downloads.png"
 import ratingIcon from "../../assets/icon-ratings.png"
 
 const Apps = () => {
 
     const InfoData = useLoaderData()
+    const [search, setSearch] = useState("")
+    const filteredApps = InfoData.filter(apps => apps.title.toLowerCase().includes(search.toLocaleLowerCase()))
+
 
     return (
         <div className='bg-[#D2D2D2] text-center '>
@@ -16,9 +19,38 @@ const Apps = () => {
         </p>
       </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-8 md:gap-4 p-4 mt-5">
+        <div className='flex justify-between items-center mt-10 p-5'>
+          <p className='font-semibold text-lg'>({filteredApps.length}) Apps Found</p>
+<label className="input bg-transparent w-5/12 md:w-3/12">
+  <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g
+      strokeLinejoin="round"
+      strokeLinecap="round"
+      strokeWidth="2.5"
+      fill="none"
+      stroke="currentColor"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </g>
+  </svg>
+  <input type="search" onChange={(e) => setSearch(e.target.value) } className="grow" placeholder="Search" />
+
+</label>
+        </div>
+
+      {
+        filteredApps.length === 0 && (
+                <p className="text-center text-lg font-semibold text-gray-600 py-10 ">
+                    No App Found
+                </p>
+        )
+      }
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-8 md:gap-4 p-4 ">
         {
-        InfoData.map(card => <div className="card bg-base-100 w-auto h-full md:h-100 shadow-sm ">
+        filteredApps.map(card => <Link to={`/app/${card.id}`}>
+        <div key={card.id} className="card bg-base-100 w-auto h-full md:h-100 shadow-sm ">
   <figure>
     <img className="object-cover"
       src={card.image}
@@ -39,7 +71,8 @@ const Apps = () => {
     </div>
   </div>
 
-</div>)
+</div>
+        </Link>)
         }
         </div>
 

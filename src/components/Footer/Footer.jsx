@@ -57,7 +57,7 @@ const Footer = () => {
 
     </div>
     <div className='text-[#FAFAFA] text-sm text-center py-4'>
-    Copyright © 2025 - Allj right reserved
+    Copyright © 2025 - All rights reserved
     </div>
 </div>
 

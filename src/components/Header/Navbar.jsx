@@ -3,6 +3,9 @@ import Logo from '../../assets/logo.png';
 import { NavLink } from 'react-router';
 
 const Navbar = () => {
+
+
+
     return (
 <div className="navbar bg-base-100 md:px-6">
   <div className="navbar-start">
@@ -13,9 +16,10 @@ const Navbar = () => {
       <ul
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-      <NavLink to={"/vvv"}>Home</NavLink>
-      <li><a>Apps</a></li>
-      <li><a>Installation</a></li>
+      
+      <li><NavLink to="/">Home</NavLink></li>
+      <li><NavLink to="/Apps">Apps</NavLink></li>
+      <li><NavLink to="/Apps">Installation</NavLink></li>
       </ul>
     </div>
     
@@ -26,10 +30,12 @@ const Navbar = () => {
 
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal gap-4 font-medium">
-      <NavLink className={`hover:bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:text-transparent hover:bg-clip-text hover:border-b-2 hover:border-purple-600 hover:font-semibold`} to={"/"}>Home</NavLink>
-      <NavLink to={"/apps"}>Apps</NavLink>
-      <NavLink to={"/"}>Installation</NavLink>
+    <ul className="menu menu-horizontal gap-4  font-medium">
+      <NavLink className={`hover:bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:text-transparent hover:bg-clip-text hover:border-b-2 hover:border-purple-600 hover:font-semibold
+            
+         `} to={"/"}>Home</NavLink>
+      <NavLink className={`hover:bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:text-transparent hover:bg-clip-text hover:border-b-2 hover:border-purple-600 hover:font-semibold`} to={"/apps"}>Apps</NavLink>
+      <NavLink className={`hover:bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:text-transparent hover:bg-clip-text hover:border-b-2 hover:border-purple-600 hover:font-semibold`} to={"/installation"}>Installation</NavLink>
     </ul>
   </div>
   <div className="navbar-end">
