@@ -4,7 +4,7 @@ import playStoreIcon from "../../assets/playstore.png";
 import appStoreIcon from "../../assets/app-store.png";
 import downloadIcon from "../../assets/icon-downloads.png"
 import ratingIcon from "../../assets/icon-ratings.png"
-import { useLoaderData, useNavigate } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 
 const Home = () => {
     
@@ -88,7 +88,7 @@ const Home = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-8 md:gap-4 p-4 mt-5">
         {
-        slicedCards.map(card => <div className="card bg-base-100 w-auto h-full md:h-100 shadow-sm ">
+        slicedCards.map(card => <Link to={`/app/${card.id}`}><div className="card bg-base-100 w-auto h-full md:h-100 shadow-sm ">
   <figure>
     <img className="object-cover"
       src={card.image}
@@ -109,7 +109,8 @@ const Home = () => {
     </div>
   </div>
 
-</div>)
+</div></Link>
+        )
         }
         </div>
 

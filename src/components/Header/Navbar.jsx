@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from '../../assets/logo.png';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
 
@@ -19,7 +19,7 @@ const Navbar = () => {
       
       <li><NavLink to="/">Home</NavLink></li>
       <li><NavLink to="/Apps">Apps</NavLink></li>
-      <li><NavLink to="/Apps">Installation</NavLink></li>
+      <li><NavLink to="/Installation">Installation</NavLink></li>
       </ul>
     </div>
     
@@ -39,7 +39,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn bg-gradient-to-r flex items-center from-[#632EE3] to-[#9F62F2] text-white"><span className='text-xl'><i class="fa-brands fa-github"></i></span> Contribute</a>
+    <Link to="https://github.com/monir-codes" className="btn bg-gradient-to-r flex items-center from-[#632EE3] to-[#9F62F2] text-white"><span className='text-xl'><i class="fa-brands fa-github"></i></span> Contribute</Link>
   </div>
 </div>
     );
