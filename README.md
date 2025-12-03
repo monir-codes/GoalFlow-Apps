@@ -1,16 +1,10 @@
-# React + Vite
+# 🚀 GoalFlow.io
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ✨ Description
+**GoalFlow.io** is a modern, user-friendly platform designed like an **app store**. It allows users to **discover, explore, and download applications** effortlessly. The platform features a **clean interface**, **smooth navigation**, and **detailed app insights**, providing a seamless experience for all users.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Technologies
+- **React** – Frontend library for building dynamic user interfaces.  
+- **Tailwind CSS** – Utility-first CSS framework for responsive and modern design.  
+- **Recharts** – Library for interactive charts and data visualization.  
+- **LocalStorage** – For storing user preferences and app-related data locally.  
