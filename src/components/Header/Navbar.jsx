@@ -23,10 +23,11 @@ const Navbar = () => {
       </ul>
     </div>
     
-    <div className='flex items-center gap-2'>
-        <img className='w-2/12 md:w-1/12 ' src={Logo} alt="Logo" />
+      <Link to="/" className='flex items-center gap-2'>
+              <img className='w-2/12 md:w-1/12 ' src={Logo} alt="Logo" />
         <h2 className="font-bold text-md md:text-lg bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-transparent bg-clip-text">GoalFlow.io</h2>
-    </div>
+      </Link>
+
 
   </div>
   <div className="navbar-center hidden lg:flex">

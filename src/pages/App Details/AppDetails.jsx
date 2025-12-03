@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+import { ResponsiveContainer, CartesianGrid, BarChart, Bar, Tooltip, XAxis, YAxis } from "recharts";
 import downloadIcon from "../../assets/icon-downloads.png";
 import ratingIcon from "../../assets/icon-ratings.png";
 import reviewIcon from "../../assets/icon-review.png";
-import { addStoredDB } from "../../utility/addToDB";
+import { addStoredDB, getStoredApp } from "../../utility/addToDB";
+import { toast, ToastContainer } from "react-toastify";
+
 
 const AppDetails = () => {
   const { id } = useParams();
@@ -21,17 +24,29 @@ const AppDetails = () => {
     downloads,
     ratings, 
   } = InfoData.find((data) => data.id === idNumber);
+  
+  const [installed, setInstalled] = useState(false)
 
   const handleInstall = (id)=>{
 
-    addStoredDB(id)
+    addStoredDB(id);
+    toast("Installed Success")
+    setInstalled(true)
 
   }
+
+
+  useEffect(()=> {
+    const installedApps = getStoredApp()
+    if(installedApps.includes(id)){
+      setInstalled(true)
+    }
+  },[])
 
   return (
     <div className="bg-[#D2D2D2] py-10 px-8 md:px-4">
       <div className="p-4 flex gap-4 flex-col md:flex-row">
-        <img src={image} className="w-9/12 mx-auto md:w-3/12 h-auto" alt="" />
+        <img src={image} className="w-9/12 mx-auto md:w-3/12 h-auto" alt="App Icon" />
         <div>
           <h2 className="font-bold text-xl md:text-2xl mt-6 md:mt-0">
             {title} : {description}
@@ -75,31 +90,52 @@ const AppDetails = () => {
             </div>
           </div>
           <div className="flex items-center justify-center md:justify-start">
-            <button onClick={()=> handleInstall(id)} className="btn block bg-[#00D390] text-white shadow-none mt-10 md:mt-8 mx-auto">
-              Install Now ( {size} MB )
+            <button onClick={()=> handleInstall(id)} disabled={installed} className={`btn block bg-[#00D390] text-white shadow-none mt-10 md:mt-8  ${installed ? "bg-gray-400 cursor-not-allowed" : "bg-[#00D390]"}`}>
+             
+           {
+            installed ? "Installed" : `Install Now ( ${size} MB )`
+           }
             </button>
+           <ToastContainer />
           </div>
         </div>
       </div>
       <div className="border-t-1 border-gray-500 my-10"></div>
 
       <div>
-        <LineChart
-          style={{
-            width: "100%",
-            aspectRatio: 1.618,
-            maxWidth: 800,
-            margin: "auto",
-          }}
-          responsive
-          data={ratings}
-        >
-          <CartesianGrid stroke="#ffffff" strokeDasharray="5 5" />
-          <XAxis dataKey="v" />
-          <YAxis width="auto" />
-          <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-          <Line type="monotone" dataKey="pv" stroke="#82ca9d" />
-        </LineChart>
+          <h3 className="text-xl font-semibold ml-8 md:ml-10 mb-2 md:mb-6">
+            Ratings
+          </h3>
+
+<ResponsiveContainer width="90%" height={300}>
+       <BarChart
+  
+    data={ratings}
+    layout="vertical"
+    style={{ marginLeft: "20px" }}
+  >
+    <CartesianGrid stroke="" />
+    <XAxis type="number" />
+    <YAxis type="category" dataKey="name" width={80} />
+    <Tooltip />
+
+    <Bar
+      dataKey="count"
+      fill="#FF8811" 
+      barSize={20}
+      radius={[0, 0, 0, 0]}
+    />
+  </BarChart>
+          </ResponsiveContainer>
+      </div>
+
+      <div className="border-b-1 border-gray-500 my-10"></div>
+
+      <div>
+          <h3 className="text-xl font-semibold md:ml-8 md:ml-10 mb-2 md:mb-6">
+           Description
+          </h3>
+          <p className="text-[#627382] mt-3 md:mt-0 text-sm md:text-md md:ml-8">{description}</p>
       </div>
     </div>
   );

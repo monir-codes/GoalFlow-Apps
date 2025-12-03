@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const getStoredApp = ()=>{
 
     const storedAppSTR = localStorage.getItem("App")
@@ -14,7 +16,7 @@ const addStoredDB = (id)=>{
 
     const storedAppData = getStoredApp();
     if(storedAppData.includes(id)){
-        alert("Already exist")
+        toast("Already exist")
     }
     else{
         storedAppData.push(id);
@@ -23,5 +25,11 @@ const addStoredDB = (id)=>{
     }
 }
 
+const removeStoredDB = (id)=>{
+    const stored = getStoredApp()
+    const filtered = stored.filter(item => parseInt(item) !== (id));
+    localStorage.setItem("App", JSON.stringify(filtered))
+}
 
-export {addStoredDB, getStoredApp}
+
+export {addStoredDB, getStoredApp, removeStoredDB}

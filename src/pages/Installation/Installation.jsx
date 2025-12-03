@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
-import { getStoredApp } from '../../utility/addToDB';
+import { getStoredApp, removeStoredDB } from '../../utility/addToDB';
 import downloadIcon from "../../assets/icon-downloads.png"
 import ratingIcon from "../../assets/icon-ratings.png"
+import { toast, ToastContainer } from 'react-toastify';
 
 
 const Installation = () => {
     
     const [myApplist, setMyAppList] = useState([])
+    const [sort, setSort] = useState("Sort ⬇️")
     const appInfo = useLoaderData()
     
     useEffect(()=>{
@@ -18,7 +20,25 @@ const Installation = () => {
         setMyAppList(myAppsList)
     },[])
 
+    const handleUninstall = (id)=>{
+        removeStoredDB(id);
+        setMyAppList(prev => prev.filter(app => app.id !== id))
+         toast("Uninstalled Success")
+    }
+    
+    const handleSort = (type)=>{
+        setSort(type)
 
+        if(type === "High-Low ⬇️" ){
+            const sortedHighToLow = [...myApplist].sort((a,b) => b.downloads - a.downloads)
+            setMyAppList(sortedHighToLow)
+        }
+        if(type === "Low-High ⬇️" ){
+            const sortedLowToHigh = [...myApplist].sort((a,b) => a.downloads - b.downloads)
+            setMyAppList(sortedLowToHigh)
+        }
+
+    }
 
     return (
         <div className='p-4 md:p-12 bg-[#D2D2D2]'>
@@ -33,10 +53,10 @@ const Installation = () => {
                         <p className='font-semibold text-md'>{myApplist.length} Apps Found</p>
                     </div>
             <div className="dropdown dropdown-start">
-  <div tabIndex={0} role="button" className="btn m-1">Click ⬇️</div>
+  <div  tabIndex={0} role="button" className="btn m-1">{sort ? sort : ""}</div>
   <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-    <li><a>Item 1</a></li>
-    <li><a>Item 2</a></li>
+    <li><a onClick={() => handleSort("High-Low ⬇️")}>High-Low</a></li>
+    <li><a onClick={() => handleSort("Low-High ⬇️")}>Low-High</a></li>
   </ul>
             </div>
                 </div>
@@ -78,9 +98,10 @@ const Installation = () => {
                         </div>
                         </div>
                     </div>
-                    <div><button className='btn bg-[#00D390] text-white text-xs md:text-sm'>Uninstall</button></div>
+                    <div><button onClick={()=> handleUninstall(app.id)} className='btn bg-[#00D390] text-white text-xs md:text-sm'>Uninstall</button></div>
                 </div>)
             }
+            <ToastContainer></ToastContainer>
             </div>
         </div>
     );

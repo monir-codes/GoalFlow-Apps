@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router';
 import downloadIcon from "../../assets/icon-downloads.png"
 import ratingIcon from "../../assets/icon-ratings.png"
+import AppNotFound from "../../assets/App-Error.png"
 
 const Apps = () => {
 
@@ -41,9 +42,12 @@ const Apps = () => {
 
       {
         filteredApps.length === 0 && (
-                <p className="text-center text-lg font-semibold text-gray-600 py-10 ">
-                    No App Found
-                </p>
+             <div className='flex flex-col justify-center items-center text-center my-6'>
+                 <img className='w-90% md:w-auto h-auto' src={AppNotFound} alt="App Not Found banner" />
+                 <h1 className='font-semibold text-xl md:text-3xl mt-4'>OPPS!! APP NOT FOUND</h1>
+                 <p className='text-[#627382] text-xs md:text-sm mt-1 w-60% md:w-auto'>The App you are requesting is not found on our system.  please try another apps</p>
+                 <Link to="/"><button className='bg-gradient-to-r from-[#632EE3] to-[#9F62F2] btn mt-3 text-white'>Go Back!</button></Link>
+             </div>
         )
       }
 
